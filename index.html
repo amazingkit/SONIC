@@ -176,11 +176,27 @@ function sonicStep() {
 }
 
 function resetChat() {
-  document.getElementById('chat-display').innerHTML = '';
+  clearChat();
+  displayNewGreeting();
+}
+function clearChat() {
+  var chatDisplay = document.getElementById('chat-display');
+  chatDisplay.innerHTML = '';
+}
+function displayNewGreeting() {
+  var chatDisplay = document.getElementById('chat-display');
+  var initialGreeting = Sonic.getInitial();
+  var rpl = '<div class="message-container"><img src="https://i.pinimg.com/474x/75/23/31/752331da9e7d5256b512f92c6de24849.jpg" alt="Sonic Avatar" class="sonic-avatar"><div class="message">' + initialGreeting + '</div></div>';
+  chatDisplay.innerHTML += rpl;
+  chatDisplay.scrollTop = chatDisplay.scrollHeight;
 }
 
+// Display initial greeting on page load
+window.onload = function() {
+  displayNewGreeting();
+};
 
-
+//Audio
 var audio = new Audio('Sonic the Hedgehog - Green Hill Zone (Smooth jazz cover).mp3');
 audio.volume = 0.1;
 
